@@ -1,0 +1,20 @@
+baseURL = "https://formula-uottawa.github.io/uOpenBlog/"
+locale = "en-us"
+title = "The Formula uOttawa Blog"
+theme = "PaperMod"
+
+# 1. Define Taxonomies (This enables clickable tags and authors)
+[taxonomies]
+  tag = "tags"
+  author = "authors"
+
+# 2. Add Link to Main Website in the Header Menu
+[[menu.main]]
+  identifier = "main-site"
+  name = "← Back to Main Site"
+  url = "https://formulauottawa.ca" # Replace with your actual URL
+  weight = 10
+
+# Theme-specific settings to show taxonomies on post pages
+[params]
+  ShowPostNavLinks = true
