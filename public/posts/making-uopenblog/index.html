@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/uOpenBlog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=uOpenBlog/livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Making uOpenBlog | The Formula uOttawa Blog</title>
+<meta name="keywords" content="software, business, technical">
+<meta name="description" content="When it came time to set up this blog, the path of least resistance would have been using a commercial drag-and-drop site builder. But as with most engineering projects, the &ldquo;easy&rdquo; route often falls apart when you introduce specific design requirements.
+We decided to build a static site from scratch using Hugo and host it via GitHub Pages. Here is a breakdown of why we took the technical route, how it was built, and what the process teaches us about modern software development.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/uOpenBlog/posts/making-uopenblog/">
+<link crossorigin="anonymous" href="/uOpenBlog/assets/css/stylesheet.89ca4972ab5e6aaa05e9a0dae0c4bb64b26585bc79e36f5cf33614eea0283abe.css" integrity="sha256-icpJcqteaqoF6aDa4MS7ZLJlhbx5429c8zYU7qAoOr4=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/uOpenBlog/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/uOpenBlog/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/uOpenBlog/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/uOpenBlog/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/uOpenBlog/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/uOpenBlog/posts/making-uopenblog/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/uOpenBlog/" accesskey="h" title="The Formula uOttawa Blog (Alt + H)">The Formula uOttawa Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://formulauottawa.ca" title="← Back to Main Site">
+                    <span>← Back to Main Site</span>&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Making uOpenBlog
+    </h1>
+    <div class="post-meta"><span title='2026-06-06 02:00:00 -0400 EDT'>June 6, 2026</span>&nbsp;·&nbsp;<a href='/uOpenBlog/authors/ayham-alakhras/'>Ayham AlAkhras</a>, <a href='/uOpenBlog/authors/jayden-ireland/'>Jayden Ireland</a>, <a href='/uOpenBlog/authors/oriol-diaz/'>Oriol Diaz</a>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><p>When it came time to set up this blog, the path of least resistance would have been using a commercial drag-and-drop site builder. But as with most engineering projects, the &ldquo;easy&rdquo; route often falls apart when you introduce specific design requirements.</p>
+<p>We decided to build a static site from scratch using <strong>Hugo</strong> and host it via <strong>GitHub Pages</strong>. Here is a breakdown of why we took the technical route, how it was built, and what the process teaches us about modern software development.</p>
+<h2 id="why-not-squarespace">Why Not Squarespace?<a hidden class="anchor" aria-hidden="true" href="#why-not-squarespace">#</a></h2>
+<p>Website builders like Squarespace or Wix are fantastic for solo portfolios, but they have a glaring limitation for collaborative environments: <strong>handling multiple authors on a single post</strong>.</p>
+<p>When you are documenting complex projects, analyzing data, or doing engineering write-ups as a team, credit needs to be shared accurately. Most out-of-the-box platforms force a single &ldquo;Author&rdquo; tag per post. By building a custom static site generator (SSG) with Hugo, we were able to define our own data taxonomies. With a few lines of YAML front matter, we can now assign an array of authors to a single post, automatically generating clickable profile pages for every contributor.</p>
+<h2 id="the-workflow-from-local-machine-to-live-site">The Workflow: From Local Machine to Live Site<a hidden class="anchor" aria-hidden="true" href="#the-workflow-from-local-machine-to-live-site">#</a></h2>
+<p>The architecture of this blog relies on a Continuous Integration and Continuous Deployment (CI/CD) pipeline. Instead of writing HTML, we write raw Markdown (<code>.md</code>) files. When we push those files to GitHub, a virtual server compiles the site and deploys it live.</p>
+<p>Here is the exact step-by-step workflow it took to get this running:</p>
+<h3 id="1-local-environment-setup">1. Local Environment Setup<a hidden class="anchor" aria-hidden="true" href="#1-local-environment-setup">#</a></h3>
+<p>First, we needed the core tools on our local Windows machine.
+Using the Windows Package Manager (<code>winget</code>), we installed the Extended version of Hugo (required for processing the SCSS stylesheets in our theme) and a system-wide installation of Git so our IDE, VS Code, could properly track source control:</p>
+<ul>
+<li><code>winget install Hugo.Hugo.Extended</code></li>
+<li><code>winget install --id Git.Git -e --source winget</code></li>
+</ul>
+<h3 id="2-initializing-hugo-and-the-papermod-theme">2. Initializing Hugo and the PaperMod Theme<a hidden class="anchor" aria-hidden="true" href="#2-initializing-hugo-and-the-papermod-theme">#</a></h3>
+<p>With the tools installed, we generated the skeleton of the site and added the lightweight <strong>PaperMod</strong> theme as a Git submodule.
+In our <code>hugo.toml</code> file, we explicitly defined our custom taxonomies:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[<span style="color:#a6e22e">taxonomies</span>]
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tag</span> = <span style="color:#e6db74">&#34;tags&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">author</span> = <span style="color:#e6db74">&#34;authors&#34;</span>
+</span></span></code></pre></div><p>This single configuration is what allows our Markdown files to dynamically link tags and multiple authors to their respective archive pages.</p>
+<h3 id="3-automating-deployment-with-github-actions">3. Automating Deployment with GitHub Actions<a hidden class="anchor" aria-hidden="true" href="#3-automating-deployment-with-github-actions">#</a></h3>
+<p>This is where the magic happens. We created a <code>.github/workflows/hugo.yaml</code> file to automate the build process. Every time a new Markdown file is committed to the <code>main</code> branch, GitHub spins up an Ubuntu server to run Hugo, generate the static HTML, and push the <code>public</code> folder to GitHub Pages.</p>
+<h4 id="navigating-the-roadblocks">Navigating the Roadblocks<a hidden class="anchor" aria-hidden="true" href="#navigating-the-roadblocks">#</a></h4>
+<p>Setting up the CI/CD pipeline wasn&rsquo;t without its bugs. We ran into two immediate build failures:</p>
+<ol>
+<li><strong>Node.js Deprecation:</strong> GitHub recently deprecated <code>v2</code> of their artifact upload actions. We had to dig into the workflow logs and update the script to use <code>actions/upload-pages-artifact@v3</code> and <code>actions/deploy-pages@v4</code>.</li>
+<li><strong>Theme Version Mismatches:</strong> The PaperMod theme required a newer version of Hugo than the one specified in the default GitHub Action script. Reading the build logs revealed the dependency conflict, which was fixed by bumping the environment variable <code>HUGO_VERSION</code> up to <code>0.146.0</code>.</li>
+</ol>
+<h2 id="what-this-teaches-us-about-software-development">What This Teaches Us About Software Development<a hidden class="anchor" aria-hidden="true" href="#what-this-teaches-us-about-software-development">#</a></h2>
+<p>Setting up a blog this way is a perfect microcosm of modern software engineering. It reinforces several core principles:</p>
+<ul>
+<li><strong>Infrastructure as Code (IaC):</strong> Our deployment process isn&rsquo;t a manual checklist; it&rsquo;s a script (<code>hugo.yaml</code>). If the site burns down tomorrow, we don&rsquo;t have to remember how to rebuild it. The code knows how to build itself.</li>
+<li><strong>Reading the Logs:</strong> Whether you are debugging code, troubleshooting telemetry streams, or fixing a web deployment, the error logs tell the story. The automated pipeline failures told us exactly which versions were conflicting.</li>
+<li><strong>Separation of Concerns:</strong> By decoupling the content (Markdown) from the presentation (Hugo/PaperMod) and the hosting (GitHub Pages), we&rsquo;ve created a modular system. We can swap out the theme or the hosting provider in the future without ever having to rewrite our blog posts.</li>
+</ul>
+<h2 id="looking-ahead-a-custom-markdown-editor">Looking Ahead: A Custom Markdown Editor<a hidden class="anchor" aria-hidden="true" href="#looking-ahead-a-custom-markdown-editor">#</a></h2>
+<p>Writing documentation and sharing knowledge shouldn&rsquo;t be constrained by platform limitations, and our current GitHub Actions pipeline is a massive step forward. However, we are already planning our next infrastructure upgrade: <strong>building a custom, in-house Markdown editor.</strong></p>
+<p>Relying on generic IDEs or web interfaces works, but a custom editor tailored specifically to our team&rsquo;s workflow will streamline things even further. It will be designed to perfectly complement this Hugo setup, natively supporting our custom taxonomy tags and automatically formatting our engineering documentation.</p>
+<h3 id="the-software-team-is-growing">The Software Team is Growing!<a hidden class="anchor" aria-hidden="true" href="#the-software-team-is-growing">#</a></h3>
+<p>Building out our web infrastructure and custom GUI tools is just one piece of the puzzle. The software team is rapidly expanding, and we are looking for dedicated members to help us build the next generation of our tooling, telemetry, and embedded systems.</p>
+<p>If you are interested in writing code that makes a tangible impact, <strong>message us or come drop by JMTS to say hello!</strong></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/uOpenBlog/tags/software/">Software</a></li>
+      <li><a href="http://localhost:1313/uOpenBlog/tags/business/">Business</a></li>
+      <li><a href="http://localhost:1313/uOpenBlog/tags/technical/">Technical</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/uOpenBlog/">The Formula uOttawa Blog</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
