@@ -17,10 +17,13 @@ theme = "PaperMod"
 
 [[menu.main]]
     identifier = "tags"
-    name = "Tags"
+    name = "Browse Tags"
     url = "/tags/"
     weight = 20
 
 # Theme-specific settings to show taxonomies on post pages
 [params]
   ShowPostNavLinks = true
+  defaultTheme = "dark"
+  disableThemeToggle = false
+  customCSS = ["css/custom.css"]

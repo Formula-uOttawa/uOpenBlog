@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="auto">
+<html lang="en" dir="auto" data-theme="dark">
 
 <head>
 	<meta name="generator" content="Hugo 0.162.1"><script src="/uOpenBlog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=uOpenBlog/livereload" data-no-instant defer></script><meta charset="utf-8">
@@ -29,40 +29,9 @@
         }
 
     </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-                color-scheme: dark;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .toc {
-                background: var(--entry);
-            }
-        }
-
-    </style>
 </noscript>
 <script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
+    if (localStorage.getItem("pref-theme") === "light") {
         document.querySelector("html").dataset.theme = 'light';
     }
 
@@ -108,10 +77,125 @@
                     </svg>
                 </a>
             </li>
+            <li>
+                <a href="http://localhost:1313/uOpenBlog/tags/" title="Browse Tags">
+                    <span>Browse Tags</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
-<main class="main"> 
+<main class="main">
+
+<script>
+  
+  (function() {
+    localStorage.removeItem("pref-theme");
+    document.documentElement.classList.remove("light");
+    document.documentElement.classList.add("dark");
+  })();
+</script>
+
+<style>
+     
+    #theme-toggle {
+        display: none !important;
+    }
+
+     
+    body.list, body.list.dark {
+        background: url('http://localhost:1313/uOpenBlog/img/background3.jpg') no-repeat center center fixed !important;
+        background-size: cover !important;
+    }
+
+     
+    html, .main {
+      background: transparent !important;
+      max-width: 100% !important;
+      padding: 0 !important;
+    }
+
+    :root, .dark {
+        --theme: transparent !important;
+    }
+
+     
+    body.list::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.4) !important;
+        z-index: -1;
+    }
+
+     
+    .post-entry, .first-entry {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        background: rgba(0, 0, 0, 0.4) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        width: 90vw;
+        max-width: 1000px;
+        margin-inline: auto;
+        margin-bottom: 16px;
+        padding: 24px 32px;
+    }
+
+     
+    .post-entry .entry-header h2,
+    .first-entry .entry-header h2 {
+        color: #ffffff;
+    }
+
+    .post-entry .entry-content p,
+    .first-entry .entry-content p {
+        color: rgba(255, 255, 255, 0.75);
+    }
+
+    .post-entry .entry-footer,
+    .first-entry .entry-footer {
+        color: rgba(255, 255, 255, 0.5);
+        display: flex;
+        align-items: center;  
+    }
+
+     
+    .homepage-tags {
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      width: 90vw;
+      max-width: 1000px;
+      margin-inline: auto;
+    }
+</style> 
+
+<div class="homepage-tags" style="
+    margin-bottom: 2rem; 
+    display: flex; 
+    gap: 10px; 
+    flex-wrap: wrap;
+    ">
+    
+    
+    <a href="/uOpenBlog/tags/business/" class="button" style="background: var(--entry); padding: 5px 15px; border-radius: 20px; font-size: 14px;">
+        Business (1)
+    </a>
+    
+    
+    
+    <a href="/uOpenBlog/tags/software/" class="button" style="background: var(--entry); padding: 5px 15px; border-radius: 20px; font-size: 14px;">
+        Software (1)
+    </a>
+    
+    
+    
+    <a href="/uOpenBlog/tags/technical/" class="button" style="background: var(--entry); padding: 5px 15px; border-radius: 20px; font-size: 14px;">
+        Technical (1)
+    </a>
+    
+    
+</div>
 
 <article class="first-entry"> 
   <header class="entry-header">
@@ -123,7 +207,8 @@
 We decided to build a static site from scratch using Hugo and host it via GitHub Pages. Here is a breakdown of why we took the technical route, how it was built, and what the process teaches us about modern software development.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2026-06-06 02:00:00 -0400 EDT'>June 6, 2026</span>&nbsp;·&nbsp;<a href='/uOpenBlog/authors/ayham-alakhras/'>Ayham AlAkhras</a>, <a href='/uOpenBlog/authors/jayden-ireland/'>Jayden Ireland</a>, <a href='/uOpenBlog/authors/oriol-diaz/'>Oriol Diaz</a></footer>
+  <footer class="entry-footer">
+<span><span title='2026-06-06 02:00:00 -0400 EDT'>June 6, 2026</span>&nbsp;·&nbsp;<a href='/uOpenBlog/authors/ayham-alakhras/'>Ayham AlAkhras</a>, <a href='/uOpenBlog/authors/jayden-ireland/'>Jayden Ireland</a>, <a href='/uOpenBlog/authors/oriol-diaz/'>Oriol Diaz</a></span><span style="margin-left: auto;">&nbsp;·&nbsp;<a href='/tags/software/'>software</a>, <a href='/tags/business/'>business</a>, <a href='/tags/technical/'>technical</a></span></footer>
   <a class="entry-link" aria-label="post link to Making uOpenBlog" href="http://localhost:1313/uOpenBlog/posts/making-uopenblog/"></a>
 </article>
     </main>

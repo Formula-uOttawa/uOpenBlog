@@ -12,7 +12,7 @@
 {{- $scratch.Add "meta" (slice (i18n "words" .WordCount | default (printf "%d words" .WordCount))) }}
 {{- end -}}
 
-{{- /* BULLETPROOF AUTHOR LINKING LOGIC */ -}}
+{{- /* AUTHOR LINKING LOGIC */ -}}
 {{- if not (.Param "hideAuthor") -}}
   {{- with .Params.authors -}}
     {{- $authors := slice -}}
@@ -21,7 +21,6 @@
       {{- if $termPage -}}
         {{- $authors = $authors | append (printf "<a href='%s'>%s</a>" $termPage.RelPermalink .) -}}
       {{- else -}}
-        {{- /* Fallback link if Hugo can't find the _index.md page */ -}}
         {{- $fallbackUrl := printf "authors/%s/" (. | urlize) | relURL -}}
         {{- $authors = $authors | append (printf "<a href='%s'>%s</a>" $fallbackUrl .) -}}
       {{- end -}}
@@ -34,6 +33,16 @@
   {{- end -}}
 {{- end -}}
 
-{{- with ($scratch.Get "meta") -}}
-{{- delimit . "&nbsp;·&nbsp;" | safeHTML -}}
+{{- with ($scratch.Get "meta") }}
+<span>{{ delimit . "&nbsp;·&nbsp;" | safeHTML }}</span>
+{{- end }}
+
+{{- if .Params.tags -}}
+  {{- $tagsList := slice -}}
+  {{- range .Params.tags -}}
+    {{- $tagUrl := printf "/tags/%s/" (. | urlize) | relLangURL -}}
+    {{- $tagHtml := printf "<a href='%s'>%s</a>" $tagUrl . -}}
+    {{- $tagsList = $tagsList | append $tagHtml -}}
+  {{- end -}}
+  <span style="margin-left: auto;">&nbsp;·&nbsp;{{ delimit $tagsList ", " | safeHTML }}</span>
 {{- end -}}
