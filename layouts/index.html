@@ -1,14 +1,6 @@
 {{- define "main" }}
 
-<script>
-  // Force dark mode on the home page — wipe any saved preference
-  (function() {
-    localStorage.removeItem("pref-theme");
-    document.documentElement.classList.remove("light");
-    document.documentElement.classList.add("dark");
-  })();
-</script>
-
+<!-- This controls everything that displays on home page -->
 <style>
     /* Hide theme toggle only on the home page */
     #theme-toggle {

@@ -1,3 +1,5 @@
+<!-- This generates metadata on posts: date, authors, tags -->
+
 {{- $scratch := newScratch }}
 
 {{- if not .Date.IsZero -}}
@@ -40,7 +42,7 @@
 {{- if .Params.tags -}}
   {{- $tagsList := slice -}}
   {{- range .Params.tags -}}
-    {{- $tagUrl := printf "/tags/%s/" (. | urlize) | relLangURL -}}
+    {{- $tagUrl := printf "tags/%s/" (. | urlize) | absLangURL -}}
     {{- $tagHtml := printf "<a href='%s'>%s</a>" $tagUrl . -}}
     {{- $tagsList = $tagsList | append $tagHtml -}}
   {{- end -}}

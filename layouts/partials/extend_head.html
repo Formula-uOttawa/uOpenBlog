@@ -1,0 +1,23 @@
+<!-- This acts as an override to the PaperMod theme settings, necessary to force dark mode on home page and save user preference for light/dark on blogs -->
+
+<script>
+  var isHome = window.location.pathname === "/uOpenBlog/" || 
+               window.location.pathname === "/uOpenBlog/index.html";
+
+  if (isHome) {
+    // Force dark on home page, but save whatever preference exists first
+    var saved = localStorage.getItem("pref-theme");
+    if (saved) {
+      localStorage.setItem("blog-pref-theme", saved); // back it up
+    }
+    localStorage.removeItem("pref-theme");
+    document.querySelector("html").dataset.theme = 'dark';
+  } else {
+    // On blog/tag/author pages, restore the saved blog preference
+    var blogPref = localStorage.getItem("blog-pref-theme");
+    if (blogPref) {
+      localStorage.setItem("pref-theme", blogPref);
+      document.querySelector("html").dataset.theme = blogPref;
+    }
+  }
+</script>
