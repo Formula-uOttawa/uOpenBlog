@@ -1,0 +1,32 @@
+{{- $img := .Page.Resources.Get .Destination -}}
+{{- if $img -}}
+
+  {{- $alt := .PlainText -}}
+  {{- $title := .Title -}}
+
+  {{- if eq $title "full" -}}
+    {{/* Full width, no resize */}}
+    <img src="{{ $img.RelPermalink }}"
+         width="{{ $img.Width }}" height="{{ $img.Height }}"
+         alt="{{ $alt }}" loading="lazy"
+         style="width: 100%; height: auto;">
+
+  {{- else if eq $title "small" -}}
+    {{/* Small thumbnail, 400px */}}
+    {{- $resized := $img.Resize "400x" -}}
+    <img src="{{ $resized.RelPermalink }}"
+         width="{{ $resized.Width }}" height="{{ $resized.Height }}"
+         alt="{{ $alt }}" loading="lazy"
+         style="max-width: 400px;">
+
+  {{- else -}}
+    {{/* Default: standard 600px resize */}}
+    {{- $resized := $img.Resize "600x" -}}
+    <img src="{{ $resized.RelPermalink }}"
+         width="{{ $resized.Width }}" height="{{ $resized.Height }}"
+         alt="{{ $alt }}" loading="lazy">
+  {{- end -}}
+
+{{- else -}}
+  <img src="{{ .Destination }}" alt="{{ .PlainText }}" loading="lazy">
+{{- end -}}

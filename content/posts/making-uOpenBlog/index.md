@@ -3,7 +3,7 @@ title: "Making uOpenBlog"
 date: 2026-06-06T02:00:00-04:00
 draft: false
 tags: ["software","business","technical"]
-authors: ["Ayham AlAkhras", "Jayden Ireland", "Oriol Diaz"]
+authors: ["Ayham AlAkhras", "Jayden-Dale Ireland", "Oriol Diaz"]
 ---
 
 We wanted a blog to document our achievements and technical processes. The path of least resistance would have been using a commercial drag-and-drop site builder. But as with most engineering projects, the easy route falls apart when you introduce specific design requirements. 
