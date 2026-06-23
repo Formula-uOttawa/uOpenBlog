@@ -13,4 +13,4 @@ hELLO WORLD
 
 Here is an _image_
 
-![This is an image](image.webp)
+![This is an image](image.webp "small")
