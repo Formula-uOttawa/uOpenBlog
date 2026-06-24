@@ -5,9 +5,9 @@ This README contains all of the information needed to create a blog post on the 
 **To see your blog online after committing changes, use this url and change x to be (name-of-post), no capital letters**: https://formula-uottawa.github.io/uOpenBlog/posts/x/
 
 Shortcuts:
-- [Markdown Syntax](https://github.com/Formula-uOttawa/uOpenBlog/edit/main/README.md#markdown-syntax)
-- [Image Keyword Table](https://github.com/Formula-uOttawa/uOpenBlog/edit/main/README.md#current-keyword-table)
-- [Software Team Section](https://github.com/Formula-uOttawa/uOpenBlog/edit/main/README.md#software-team-section)
+- [Markdown Syntax](https://github.com/Formula-uOttawa/uOpenBlog/blob/main/README.md#markdown-syntax)
+- [Image Keyword Table](https://github.com/Formula-uOttawa/uOpenBlog/blob/main/README.md#current-keyword-table)
+- [Software Team Section](https://github.com/Formula-uOttawa/uOpenBlog/blob/main/README.md#software-team-section)
 ---
 
 # Creating a blog post
