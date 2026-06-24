@@ -1,3 +1,5 @@
+**CHANGES ARE BEING MADE TO THIS README**
+
 This README contains all of the information needed to create a blog post on the Formula uOttawa site and technical data on how it works.
 
 # Creating a blog post
@@ -54,7 +56,7 @@ We generate our site using Hugo, a static site generator. It supports most markd
 | Title/Headings    | \# Title<br>\#\# Heading<br>\#\#\# Subheading                                                                                  | <h1>Title</h1><h2>Heading</h2><h3>Subheading</h3>                                        |
 | Bold              | \*\*bold text\*\*                                                                                                               | **bold text**                                                                            |
 | Italic            | \*italicized text\*                                                                                                             | *italicized text*                                                                        |
-| Image             | \!\[alt text](image.jpg)                                                                                                        | Please see the uploading images section for more details                                                                     |
+| Image             | \!\[alt text](image.jpg)                                                                                                        | Please see the uploading images section for more details.                                                                     |
 | Link              | \[title](https://www.example.com)                                                                                               | [title](https://www.example.com)                                                         |
 | Ordered List      | 1\. First item<br>2\. Second item<br>3\. Third item                                                                             | <ol><li>First item</li><li>Second item</li><li>Third item</li></ol>                      |
 | Unordered List    | \- First item<br>\- Second item<br>\- Third item                                                                                | <ul><li>First item</li><li>Second item</li><li>Third item</li></ul>                      |
@@ -68,3 +70,6 @@ We generate our site using Hugo, a static site generator. It supports most markd
 | Definition List   | term<br>: definition                                                                                                            | **term**<br>: definition                                                                 |
 | Strikethrough     | \~\~The world is flat.\~\~                                                                                                      | <s>The world is flat.</s>                                                                |
 | Task List         | \- \[x] Write the press release<br>\- \[ ] Update the website<br>\- \[ ] Contact the media                                     | &#9745; Write the press release<br>&#9744; Update the website<br>&#9744; Contact the media |
+
+## Uploading Images
+
