@@ -1,6 +1,6 @@
 This README contains all of the information needed to create a blog post on the Formula uOttawa site and technical data on how it works.
 
-- **To see your blog online after committing changes, use this url and change x to be the name-of-your-post-no-capilization**: https://formula-uottawa.github.io/uOpenBlog/posts/x/
+- **To see your blog online after committing changes, use this url and change x to be (name-of-post), no capital letters**: https://formula-uottawa.github.io/uOpenBlog/posts/x/
 
 # Creating a blog post
 
