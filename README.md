@@ -1,18 +1,12 @@
-**CHANGES ARE BEING MADE TO THIS README**
-
 This README contains all of the information needed to create a blog post on the Formula uOttawa site and technical data on how it works.
+
+- **To see your blog online after committing changes**: https://formula-uottawa.github.io/uOpenBlog/posts/(name-of-post-no-capilization)/
 
 # Creating a blog post
 
-  The website builds your blog post using a language called **markdown**, it is basically just an upgraded text file with syntax to change how text appears. Discord uses a simplified version, such as for **bolding** or *italicizing*. 
-
-  This section is separated into steps to follow along with as you make your post, but you may naturally find yourself returning to only look at certain steps to see things such as markdown syntax or how to upload images.
+Blog posts are written in Markdown; a text file with syntax to format text (similar to Discord's bolding and italicizing). Follow the steps below when writing your first post, or refer back to specific steps as needed.
 
 ## First Step: Creating Your Work Space
-
-  Things need to be organized in a specific way to allow the website to pull your blog post and its associated images correctly. 
-
-  For each blog post, all of the content (markdown file, images), needs to be contained in its own unique folder under content/posts/(post-Name). You will create a file in this folder and name it "index.md", then whenever you want to have an image in your post, you will place the image directly into this folder as well. Here are the steps to do all of this:
 
 1. Go to https://github.com/Formula-uOttawa/uOpenBlog (where we are right now).
    
@@ -22,7 +16,7 @@ This README contains all of the information needed to create a blog post on the 
    
 4. Click "Name your file" again and type "index.md". This will be where you write your blog post.
 
-5. in index.md you will copy and paste the follow code/metadata, replace the information in (), and then delete the (). Remember: title, date, tags, authors. You can put as few or as many authors/tags as you want:
+5. Copy and paste the metadata below into index.md, replacing the values in ( ):
 
 ```
 ---
@@ -43,13 +37,13 @@ It should look like this:
 
 6. Press the green "Commit changes..." top right, then click the green "Commit changes" in the popup.
 
-Anytime you want to work on your post, you'll click content->posts->post-Name->index.md, and then type into that text file. To see how the text will look you'll click preview, and to save your work you'll commit your changes again. Ignore how the metadata tables looks in preview, it will look like this on the site:
+Anytime you want to make changes to your post, you will click: content → posts → post-name → index.md. Use Preview to see how it looks, and Commit changes to save. Note: to properly see how images look, go to the uploading images section for instructions. The metadata at the top of your posts will take the form of:
 
 <img width="873" height="100" alt="image" src="https://github.com/user-attachments/assets/9063ddad-08e2-4c39-8caf-23684ea6b4d6" />
 
 ## Markdown Syntax
 
-We generate our site using Hugo, a static site generator. It supports most markdown syntax. Here is a list of elements and the syntax to use them in order of usefulness. Sourced from [markdownguide.org](https://www.markdownguide.org/cheat-sheet/)(link to their cheat sheet). Hugo does not support the highlight, subscript, superscript elements.
+Sourced from [markdownguide.org](https://www.markdownguide.org/cheat-sheet/)(link to their cheat sheet). Hugo does not support the highlight, subscript, superscript elements.
 
 ### Commonly Used
 | Element              | Markdown Syntax                                                                                                                 | Visually                                                                                 |
@@ -76,19 +70,24 @@ We generate our site using Hugo, a static site generator. It supports most markd
 | Table                | \| Syntax \| Description \|<br>\| --- \| --- \|<br>\| Header \| Title \|<br>\| Paragraph \| Text \|                            | <table><tr><th>Syntax</th><th>Description</th></tr><tr><td>Header</td><td>Title</td></tr><tr><td>Paragraph</td><td>Text</td></tr></table> Note: recommended to use AI for tables. |
 | Task List            | \- \[x] Write the press release<br>\- \[ ] Update the website<br>\- \[ ] Contact the media                                     | &#9745; Write the press release<br>&#9744; Update the website<br>&#9744; Contact the media |
 | Footnote             | Voltage is measured in volts. \[^1]<br><br>\[^1]: Named after Alessandro Volta.                                                | Voltage is measured in volts. <sup>1</sup><br><br><sub><sup>1</sup> Named after Alessandro Volta.</sub> |
-| Heading ID           | \#\#\# Introduction \{#intro}                                                                                                  | <b>Introduction</b> — link to it with \[click\](#intro)                                  |
+| Heading ID           | IGNORE FOR NOW                                                                                                  | IGNORE FOR NOW                                  |
 | Definition List      | Voltage<br>: The potential difference between two points                                                                       | <dl><dt><b>Voltage</b></dt><dd>The potential difference between two points</dd></dl>     |
 
 ## Uploading Images
 
-All images need to be in the same folder as the markdown post that is using them. Meaning all of your images need to be in uOpenBlog/content/posts/name-Of-Post/.
+Images must be placed in the same folder as their post (uOpenBlog/content/posts/post-name/). Keywords can be used to render images in different ways.
 
-\!\[alt text](image.jpg) is the standard way to insert images in markdown, where image.jpg should be the exact name and filetype of your image. However, because Hugo has built in image rendering, we can adjust the sizing and other details of the image using keywords. For example: \!\[alt text](image.jpg "(keyword)"), where (keyword) is any keyword from the table below. Without a keyword, the image will be rendered as default.
-
-Current Keyword Table:
+### Current Keyword Table:
 
 | Keyword | Renders                                                                                     | Syntax                    |
 | ------- | ------------------------------------------------------------------------------------------- | ------------------------- |
 |  | Default — resizes image to 600px wide                                                       | \!\[alt](image.jpg)         |
 | "small" | Resizes image to 400px wide, displays as a small thumbnail                                  | \!\[alt](image.jpg "small") |
 | "full"  | No resizing — image displays at its original size, stretched to 100% of the container width | \!\[alt](image.jpg "full")  |
+
+### Seeing Your Rendered Images
+
+Github doesn't render images the same way that Hugo does, our site generator. When you are making adjustments to your images, such as changing the keyword, you will need to go to the url: https://formula-uottawa.github.io/uOpenBlog/posts/x/ , where x is the name of your post folder with no capitilization.
+
+
+# Software Team Section
