@@ -133,10 +133,13 @@
     flex-wrap: wrap;
     ">
     {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+    {{ $listed := where $taxonomy.Pages "Params.unlisted" "ne" true }}
+    {{ if gt (len $listed) 0 }}
     {{ with site.GetPage (printf "/tags/%s" $name) }}
     <a href="{{ .RelPermalink }}" class="button" style="background: var(--entry); padding: 5px 15px; border-radius: 20px; font-size: 14px;">
-        {{ .Title }} ({{ $taxonomy.Count }})
+        {{ .Title }} ({{ len $listed }})
     </a>
+    {{ end }}
     {{ end }}
     {{ end }}
 </div>

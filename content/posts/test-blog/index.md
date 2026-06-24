@@ -5,6 +5,7 @@ draft: false
 _build:
   list: never
   render: always
+unlisted: true
 tags: ["software","business","technical"]
 authors: ["Ayham AlAkhras", "Jayden-Dale Ireland", "Oriol Diaz"]
 ---
