@@ -60,5 +60,5 @@ Relying on generic IDEs or web interfaces (especially GitHub) works, but a custo
 Building out our web infrastructure and custom GUI tools is just one piece of the puzzle. The software team is rapidly expanding, and we are looking for dedicated members to help us build our tooling, telemetry, and embedded systems.
 
 If you are interested in writing code that makes a real impact:
-* Jont our Discord server through our [main website](formulauottawa.ca).
+* Click "Join Us" on the [main website](https://formulauottawa.ca).
 * Come drop by JMTS (STEM 128) to say hello!
