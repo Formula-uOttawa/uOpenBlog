@@ -126,23 +126,8 @@
 {{- partial "home_info.html" . }}
 {{- end }}
 
-<div class="homepage-tags" style="
-    margin-bottom: 2rem; 
-    display: flex; 
-    gap: 10px; 
-    flex-wrap: wrap;
-    ">
-    {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-    {{ $listed := where $taxonomy.Pages "Params.unlisted" "ne" true }}
-    {{ if gt (len $listed) 0 }}
-    {{ with site.GetPage (printf "/tags/%s" $name) }}
-    <a href="{{ .RelPermalink }}" class="button" style="background: var(--entry); padding: 5px 15px; border-radius: 20px; font-size: 14px;">
-        {{ .Title }} ({{ len $listed }})
-    </a>
-    {{ end }}
-    {{ end }}
-    {{ end }}
-</div>
+<!-- This calls the filtered tags partial to display tags -->
+{{ partial "filtered_tags.html" . }}
 
 {{- $term := .Data.Term }}
 {{- range $index, $page := $paginator.Pages }}

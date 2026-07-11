@@ -1,0 +1,17 @@
+<div class="homepage-tags" style="margin-bottom: 2rem; display: flex; gap: 10px; flex-wrap: wrap;">
+    <!-- site.Taxonomies.tags is globally available, so this works on ANY page -->
+    {{ range $name, $taxonomy := site.Taxonomies.tags }}
+    {{ with site.GetPage (printf "/tags/%s" $name) }}
+    
+    {{ $listed := where $taxonomy.Pages "Params.unlisted" "ne" true }}
+    {{ $listed = where $listed "Params._build.list" "ne" "never" }}
+    
+    {{ if gt (len $listed) 0 }}
+    <a href="{{ .RelPermalink }}" class="button" style="background: var(--entry); padding: 5px 15px; border-radius: 20px; font-size: 14px;">
+        {{ .Title }} ({{ len $listed }})
+    </a>
+    {{ end }}
+    
+    {{ end }}
+    {{ end }}
+</div>

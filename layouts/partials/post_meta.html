@@ -29,8 +29,8 @@
     {{- end -}}
     {{- $scratch.Add "meta" (slice (delimit $authors ", ")) -}}
   {{- else -}}
-    {{- with (default site.Author.name .Params.author) -}}
-       {{- $scratch.Add "meta" (slice .) -}}
+    {{- with .Params.author -}}
+      {{- $scratch.Add "meta" (slice .) -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
