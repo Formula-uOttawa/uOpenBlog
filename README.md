@@ -99,3 +99,21 @@ Github doesn't render images the same way that Hugo does, our site generator. Wh
 
 
 # Software Team Section
+
+## Basic Summary
+
+The blog site uses Hugo and GitHub Pages to generate everything you see. Formatting, styling, are mostly written in html and content are written in markdown, then Hugo takes all of the instructions and content and generates a website. 
+
+GitHub Pages runs Hugo at the website URL using the hugo.yaml configuration file in .github/workflows/. Whenever changes are pushed to main, the workflow starts a temperory GitHub-hosted computer, installs Hugo, runs Hugo and processess all of the instructions/contents, then outputs the finished site into a public/ folder. The workflow then sends that output to a GitHub Pages URL and the deployed website uses all of the static files generated.
+
+## Folders
+
+content: contains blog posts and other page content, typically markdown files
+
+archetypes: contains starter templates for new content files so you don't need to create blank markdown files and retype metadata. For example by default if you were to type the bash command "hugo new posts/my-new-post.md" it would create a markdown file at content/posts/my-new-post.md and fill it with the matching archetype's specified information. Practically this would mean that we could have a template for the metadata whenever we make a post and have people run a command which would automatically make their md files for them.
+
+layouts: HTML templates that decide how different kinds of pages are formatted such as homepage at index.html. There are two subdirectories called "_default" and "partials". 
+
+   _default: Templates for when a content type doesn't have its own specialized layout. Has terms.html which are instructions for counting tagged posts and disregarding unlisted posts, used in homepage and browse tags         page. Also has the folder "_markup", containing render-image.html, which are the instructions for rendering images and importantly resizing based on inputted keywords.
+
+   partials: 
