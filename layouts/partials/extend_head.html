@@ -1,23 +1,52 @@
-<!-- This acts as an override to the PaperMod theme settings, necessary to force dark mode on home page and save user preference for light/dark on blogs -->
-
+<!-- Homepage visual override + normal PaperMod theme persistence -->
 <script>
-  var isHome = window.location.pathname === "/uOpenBlog/" || 
-               window.location.pathname === "/uOpenBlog/index.html";
+  (function () {
+    const isHome =
+      window.location.pathname === "/uOpenBlog/" ||
+      window.location.pathname === "/uOpenBlog/index.html";
 
-  if (isHome) {
-    // Force dark on home page, but save whatever preference exists first
-    var saved = localStorage.getItem("pref-theme");
-    if (saved) {
-      localStorage.setItem("blog-pref-theme", saved); // back it up
+    const savedTheme = localStorage.getItem("pref-theme");
+    const root = document.documentElement;
+
+    function applyHomeDark() {
+      root.classList.add("home-dark");
+      root.classList.add("dark");
+      root.setAttribute("data-theme", "dark");
     }
-    localStorage.removeItem("pref-theme");
-    document.querySelector("html").dataset.theme = 'dark';
-  } else {
-    // On blog/tag/author pages, restore the saved blog preference
-    var blogPref = localStorage.getItem("blog-pref-theme");
-    if (blogPref) {
-      localStorage.setItem("pref-theme", blogPref);
-      document.querySelector("html").dataset.theme = blogPref;
+
+    function applySavedTheme() {
+      root.classList.remove("home-dark");
+
+      if (savedTheme === "dark") {
+        root.classList.add("dark");
+        root.setAttribute("data-theme", "dark");
+      } else if (savedTheme === "light") {
+        root.classList.remove("dark");
+        root.setAttribute("data-theme", "light");
+      }
     }
-  }
+
+    if (isHome) {
+      applyHomeDark();
+    } else {
+      applySavedTheme();
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      if (document.body) {
+        if (isHome) {
+          document.body.classList.add("home-dark");
+          document.body.classList.add("dark");
+        } else {
+          document.body.classList.remove("home-dark");
+
+          if (savedTheme === "dark") {
+            document.body.classList.add("dark");
+          } else if (savedTheme === "light") {
+            document.body.classList.remove("dark");
+          }
+        }
+      }
+    });
+  })();
 </script>

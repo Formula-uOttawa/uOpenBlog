@@ -2,7 +2,7 @@
 title: "Making uOpenBlog"
 date: 2026-06-06T02:00:00-04:00
 draft: false
-_build:
+build:
   list: never
   render: always
 unlisted: true
