@@ -7,7 +7,7 @@ build:
   render: always
 unlisted: true
 tags: ["software","business","technical"]
-authors: ["Ayham AlAkhras", "Jayden-Dale Ireland", "Oriol Diaz"]
+authors: ["Ayham AlAkhras", "Jayden-Dale Ireland", "Oriol Diaz", "Jiyuu Chen"]
 ---
 
 ## THIS IS CONTENT
@@ -29,3 +29,10 @@ Here is an image uploaded by GUI
 
 <img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/11533435-3491-4ad1-9c99-786670f77fe8" />
 
+YouTube Video Test
+
+{{< video src="https://www.youtube.com/watch?v=M7lc1UVf-VE" title="YouTube video test" >}}
+
+MP4 Video Test
+
+{{< video src="test.mp4" title="MP4 video test" >}}
