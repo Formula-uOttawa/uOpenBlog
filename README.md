@@ -7,6 +7,7 @@ This README contains all of the information needed to create a blog post on the 
 Shortcuts:
 - [Markdown Syntax](https://github.com/Formula-uOttawa/uOpenBlog/blob/main/README.md#markdown-syntax)
 - [Image Keyword Table](https://github.com/Formula-uOttawa/uOpenBlog/blob/main/README.md#current-keyword-table)
+- [Embedding Videos](https://github.com/Formula-uOttawa/uOpenBlog/blob/main/README.md#embedding-videos)
 - [Software Team Section](https://github.com/Formula-uOttawa/uOpenBlog/blob/main/README.md#software-team-section)
 ---
 
@@ -96,6 +97,53 @@ Images must be placed in the same folder as their post (uOpenBlog/content/posts/
 ### Seeing Your Rendered Images
 
 Github doesn't render images the same way that Hugo does, our site generator. When you are making adjustments to your images, such as changing the keyword, you will need to go to the url: https://formula-uottawa.github.io/uOpenBlog/posts/x/ , where x is the name of your post folder with no capitilization.
+
+## Embedding Videos
+
+Use the `video` shortcode for both YouTube and MP4 videos. The player automatically fits the width of the post on desktop and mobile.
+
+### YouTube
+
+Copy the video's URL from YouTube and put it in `src`. Add a short, descriptive `title` for screen-reader users:
+
+```markdown
+{{< video src="https://www.youtube.com/watch?v=VIDEO_ID" title="Vehicle launch test" >}}
+```
+
+Regular YouTube links, `youtu.be` share links, Shorts links, embed links, and bare 11-character video IDs are supported. Videos use YouTube's privacy-enhanced player and load only when the reader reaches them.
+
+### MP4
+
+1. Upload the `.mp4` file to the same post folder as `index.md`, just as you would upload an image.
+2. Add this line to `index.md`, using the exact MP4 filename:
+
+```markdown
+{{< video src="vehicle-test.mp4" title="Vehicle launch test" >}}
+```
+
+The player includes standard play, pause, volume, seek, and full-screen controls. A missing or misspelled filename stops the site build and points to the exact post and line, preventing a broken video from being published.
+
+For a poster image, a visible caption, or closed captions, upload those files beside `index.md` and add the optional values:
+
+```markdown
+{{< video
+  src="vehicle-test.mp4"
+  title="Vehicle launch test"
+  poster="vehicle-test-poster.jpg"
+  caption="First full-power launch test."
+  captions="vehicle-test.en.vtt"
+  captions-lang="en"
+  captions-label="English"
+>}}
+```
+
+`poster` must be an image file and `captions` must be a WebVTT (`.vtt`) file. When a video contains meaningful speech or sound, add accurate, reviewed captions. For YouTube videos, add and review the captions in YouTube Studio before embedding the video.
+
+The simple one-line version is all that is required when a poster, visible caption, and closed-caption track are not needed.
+
+For the existing GitHub-browser publishing process, keep uploaded MP4 files under 25 MiB. Use YouTube for larger videos. Export MP4 files with H.264 video and AAC audio for broad browser compatibility.
+
+GitHub's Markdown preview does not render Hugo shortcodes. After committing, view the published post at `https://formula-uottawa.github.io/uOpenBlog/posts/name-of-post/`.
 
 
 # Software Team Section

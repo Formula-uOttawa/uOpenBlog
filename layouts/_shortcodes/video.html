@@ -1,0 +1,130 @@
+{{- $src := "" -}}
+{{- $title := "" -}}
+{{- $caption := "" -}}
+{{- $poster := "" -}}
+{{- $captions := "" -}}
+{{- $captionsLang := "en" -}}
+{{- $captionsLabel := "English" -}}
+
+{{- if .IsNamedParams -}}
+  {{- $src = .Get "src" -}}
+  {{- with .Get "title" }}{{ $title = . }}{{ end -}}
+  {{- with .Get "caption" }}{{ $caption = . }}{{ end -}}
+  {{- with .Get "poster" }}{{ $poster = . }}{{ end -}}
+  {{- with .Get "captions" }}{{ $captions = . }}{{ end -}}
+  {{- with .Get "captions-lang" }}{{ $captionsLang = . }}{{ end -}}
+  {{- with .Get "captions-label" }}{{ $captionsLabel = . }}{{ end -}}
+{{- else -}}
+  {{- $src = .Get 0 -}}
+  {{- if gt (len .Params) 1 }}{{ $title = .Get 1 }}{{ end -}}
+{{- end -}}
+
+{{- if not $src -}}
+  {{- errorf "The %q shortcode requires a video source: see %s" .Name .Position -}}
+{{- else if not $title -}}
+  {{- errorf "The %q shortcode requires a short, descriptive title: see %s" .Name .Position -}}
+{{- else -}}
+  {{- $parsed := urls.Parse $src -}}
+  {{- $host := lower $parsed.Hostname -}}
+  {{- $youTubeHosts := slice "youtube.com" "www.youtube.com" "m.youtube.com" "youtu.be" "www.youtu.be" "youtube-nocookie.com" "www.youtube-nocookie.com" -}}
+  {{- $isYouTube := in $youTubeHosts $host -}}
+  {{- $youTubeID := "" -}}
+
+  {{- if and (not $parsed.IsAbs) (eq (len (findRE "^[A-Za-z0-9_-]{11}$" $src)) 1) -}}
+    {{- $isYouTube = true -}}
+    {{- $youTubeID = $src -}}
+  {{- else if in (slice "youtu.be" "www.youtu.be") $host -}}
+    {{- $parts := split (strings.TrimPrefix "/" $parsed.Path) "/" -}}
+    {{- if gt (len $parts) 0 }}{{ $youTubeID = index $parts 0 }}{{ end -}}
+  {{- else if $isYouTube -}}
+    {{- $pathParts := split (strings.TrimPrefix "/" $parsed.Path) "/" -}}
+    {{- if eq (index $pathParts 0) "watch" -}}
+      {{- $youTubeID = $parsed.Query.Get "v" -}}
+    {{- else if and (ge (len $pathParts) 2) (in (slice "embed" "shorts" "live") (index $pathParts 0)) -}}
+      {{- $youTubeID = index $pathParts 1 -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if $isYouTube -}}
+    {{- if ne (len (findRE "^[A-Za-z0-9_-]{11}$" $youTubeID)) 1 -}}
+      {{- errorf "The %q shortcode received an invalid YouTube URL or video ID %q: see %s" .Name $src .Position -}}
+    {{- else -}}
+<figure class="video-embed">
+  <div class="video-embed__youtube">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/{{ $youTubeID }}"
+      title="{{ $title }}"
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen></iframe>
+  </div>
+  {{- with $caption }}
+  <figcaption>{{ . }}</figcaption>
+  {{- end }}
+</figure>
+    {{- end -}}
+  {{- else -}}
+    {{- $isMP4 := strings.HasSuffix (lower $parsed.Path) ".mp4" -}}
+    {{- $videoURL := "" -}}
+    {{- $posterURL := "" -}}
+    {{- $captionsURL := "" -}}
+    {{- $canRender := true -}}
+
+    {{- if not $isMP4 -}}
+      {{- errorf "The %q shortcode supports YouTube URLs, YouTube video IDs, and MP4 files; received %q: see %s" .Name $src .Position -}}
+      {{- $canRender = false -}}
+    {{- else -}}
+      {{- $videoResource := .Page.Resources.Get $src -}}
+      {{- if $videoResource -}}
+        {{- $videoURL = $videoResource.RelPermalink -}}
+      {{- else if and $parsed.IsAbs (eq (lower $parsed.Scheme) "https") -}}
+        {{- $videoURL = $src -}}
+      {{- else -}}
+        {{- errorf "The %q shortcode could not find MP4 file %q in this post's folder: see %s" .Name $src .Position -}}
+        {{- $canRender = false -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{- with $poster -}}
+      {{- $posterResource := $.Page.Resources.Get . -}}
+      {{- if not $posterResource -}}
+        {{- errorf "The %q shortcode could not find poster image %q in this post's folder: see %s" $.Name $poster $.Position -}}
+        {{- $canRender = false -}}
+      {{- else if ne $posterResource.ResourceType "image" -}}
+        {{- errorf "The %q shortcode poster %q is not an image file: see %s" $.Name $poster $.Position -}}
+        {{- $canRender = false -}}
+      {{- else -}}
+        {{- $posterURL = $posterResource.RelPermalink -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{- with $captions -}}
+      {{- $captionsResource := $.Page.Resources.Get . -}}
+      {{- if not (strings.HasSuffix (lower $captions) ".vtt") -}}
+        {{- errorf "The %q shortcode captions file %q must use the .vtt extension: see %s" $.Name $captions $.Position -}}
+        {{- $canRender = false -}}
+      {{- else if not $captionsResource -}}
+        {{- errorf "The %q shortcode could not find captions file %q in this post's folder: see %s" $.Name $captions $.Position -}}
+        {{- $canRender = false -}}
+      {{- else -}}
+        {{- $captionsURL = $captionsResource.RelPermalink -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{- if $canRender -}}
+<figure class="video-embed">
+  <video controls preload="metadata" playsinline aria-label="{{ $title }}"{{ with $posterURL }} poster="{{ . }}"{{ end }}>
+    <source src="{{ $videoURL }}" type="video/mp4">
+    {{- with $captionsURL }}
+    <track kind="captions" src="{{ . }}" srclang="{{ $captionsLang }}" label="{{ $captionsLabel }}" default>
+    {{- end }}
+    Your browser does not support HTML video. <a href="{{ $videoURL }}">Download the MP4 video</a>.
+  </video>
+  {{- with $caption }}
+  <figcaption>{{ . }}</figcaption>
+  {{- end }}
+</figure>
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
