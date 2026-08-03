@@ -94,6 +94,10 @@ Images must be placed in the same folder as their post (uOpenBlog/content/posts/
 | "small" | Resizes image to 400px wide, displays as a small thumbnail                                  | \!\[alt](image.jpg "small") |
 | "full"  | No resizing — image displays at its original size, stretched to 100% of the container width | \!\[alt](image.jpg "full")  |
 
+### Seeing Your Rendered Images
+
+Github doesn't render images the same way that Hugo does, our site generator. When you are making adjustments to your images, such as changing the keyword, you will need to go to the url: https://formula-uottawa.github.io/uOpenBlog/posts/x/ , where x is the name of your post folder with no capitilization.
+
 ## Embedding Videos
 
 Use the `video` shortcode for both YouTube and MP4 videos. The player automatically fits the width of the post on desktop and mobile.
@@ -140,10 +144,6 @@ The simple one-line version is all that is required when a poster, visible capti
 For the existing GitHub-browser publishing process, keep uploaded MP4 files under 25 MiB. Use YouTube for larger videos. Export MP4 files with H.264 video and AAC audio for broad browser compatibility.
 
 GitHub's Markdown preview does not render Hugo shortcodes. After committing, view the published post at `https://formula-uottawa.github.io/uOpenBlog/posts/name-of-post/`.
-
-### Seeing Your Rendered Images
-
-Github doesn't render images the same way that Hugo does, our site generator. When you are making adjustments to your images, such as changing the keyword, you will need to go to the url: https://formula-uottawa.github.io/uOpenBlog/posts/x/ , where x is the name of your post folder with no capitilization.
 
 
 # Software Team Section
