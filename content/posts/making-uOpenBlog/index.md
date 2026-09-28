@@ -1,5 +1,6 @@
 ---
 title: "Making uOpenBlog"
+description: "How we made our blog."
 date: 2026-06-06T02:00:00-04:00
 draft: false
 tags: ["software","business","technical"]
