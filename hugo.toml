@@ -1,7 +1,10 @@
 baseURL = "https://formula-uottawa.github.io/uOpenBlog/"
 locale = "en-us"
+languageCode = "en-us"
 title = "The Formula uOttawa Blog"
 theme = "PaperMod"
+enableRobotsTXT = true
+canonifyURLs = true
 
 # 1. Define Taxonomies (This enables clickable tags and authors)
 [taxonomies]
@@ -23,10 +26,13 @@ theme = "PaperMod"
 
 # Theme-specific settings to show taxonomies on post pages
 [params]
+  env = "production"
   ShowPostNavLinks = true
   defaultTheme = "dark"
   disableThemeToggle = false
   customCSS = ["css/custom.css"]
+  description = "Formula uOttawa's official blog page for sharing stories and technical findings."
+  author = "Formula uOttawa"
 
 # Code to pull favicons and Apple Touch Icon 
 [params.assets]
