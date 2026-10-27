@@ -154,6 +154,15 @@ The blog site uses Hugo and GitHub Pages to generate everything you see. Formatt
 
 GitHub Pages runs Hugo at the website URL using the hugo.yaml configuration file in .github/workflows/. Whenever changes are pushed to main, the workflow starts a temperory GitHub-hosted computer, installs Hugo, runs Hugo and processess all of the instructions/contents, then outputs the finished site into a public/ folder. The workflow then sends that output to a GitHub Pages URL and the deployed website uses all of the static files generated.
 
+## Getting Started
+Use the following command in PowerShell to install Hugo:
+
+`winget install hugo`
+
+Use the following command in PowerShell to run the site locally (while directory is set to the base folder of the blog repo):
+
+`hugo server`
+
 ## Folders
 
 content: contains blog posts and other page content, typically markdown files
