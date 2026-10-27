@@ -145,6 +145,9 @@
 {{- $class = "post-entry tag-entry" }}
 {{- end }}
 
+{{ if .Params.coop }}
+  {{ .Content }}
+{{ else }}
 <article class="{{ $class }}">
   {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
   {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
@@ -173,6 +176,7 @@
   {{- end }}
   <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
 </article>
+{{ end }}{{/* Ordinary posts keep the existing card design. */}}
 {{- end }}
 
 {{- if gt $paginator.TotalPages 1 }}

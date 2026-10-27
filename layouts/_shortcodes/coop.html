@@ -1,0 +1,149 @@
+{{- /* Shared co-op design. Edit each member's index.md for content, not this file. */ -}}
+{{- $css := `
+body:has(.coop-story), body.list:has(.coop-story) {
+  --theme: #111315;
+  --primary: #fafafa;
+  --secondary: #a8abad;
+  --content: #d4d6d8;
+  --border: #343638;
+  --nav-width: 1100px;
+  color: #fafafa;
+  color-scheme: dark;
+  background: linear-gradient(rgba(9,11,12,.78),rgba(9,11,12,.9)), url("__COOP_BACKGROUND__") center / cover fixed !important;
+}
+body.list.home-dark:has(.coop-story)::before { display: none; }
+body:has(.coop-story) .main { max-width: 1148px !important; padding: 32px 24px 0 !important; }
+body:has(.coop-story) .header { border-bottom: 1px solid rgba(255,255,255,.1); }
+body:has(.coop-story) .header-nav { min-height: 80px; align-items: center; }
+body:has(.coop-story) .footer { max-width: 1100px; margin-inline: auto; border-top: 1px solid #343638; }
+body:has(.coop-story) .homepage-tags { display: none !important; }
+body:has(.coop-story) #theme-toggle { display: none; }
+.post-single:has(.coop-story) > .post-header { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); }
+.post-single:has(.coop-story) > .post-footer { display: none; }
+.post-single:has(.coop-story) > .post-content { margin: 0; }
+.coop-story { --coop-red: #ff343c; margin: 0 0 32px; color: #fafafa; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height: 1.65; }
+.coop-story a:not(.anchor) { color: inherit; box-shadow: none; text-decoration: none; }
+.coop-story a:focus-visible { outline: 3px solid #fff; outline-offset: 5px; }
+.coop-story .coop-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; }
+.coop-story p.coop-label { margin: 0; color: var(--coop-red); font-size: 14px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+.coop-story .coop-topics { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 0; list-style: none; }
+.coop-story .coop-topics li { margin: 0; }
+.coop-story .coop-topics a { display: block; padding: 5px 15px; border: 1px solid #4d5052; border-radius: 24px; background: rgba(32,34,36,.8); color: #ededee; font-size: 13px; }
+.coop-story .coop-topics a:hover { background: #36393b; }
+.coop-story .coop-panel { overflow: hidden; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; background: rgba(14,16,18,.96); }
+.coop-story .coop-profile { display: grid; grid-template-columns: minmax(0,.85fr) minmax(0,1.45fr); align-items: stretch; gap: 40px; padding: 36px; }
+.coop-story figure.coop-photo { position: relative; min-width: 0; min-height: 440px; padding: 0; margin: 0; overflow: hidden; border: 1px dashed #62666a; border-radius: 6px; background: linear-gradient(135deg,#26292c,#1a1d20); }
+.coop-story .coop-photo img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; padding: 0; margin: 0; object-fit: cover; object-position: center; }
+.coop-story .coop-photo-placeholder { display: flex; min-height: 440px; height: 100%; padding: 30px 18px; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.coop-story .coop-photo-placeholder svg { width: 72px; height: 72px; margin-bottom: 24px; color: #909599; }
+.coop-story .coop-photo-label { color: #e1e3e5; font-size: 13px; font-weight: 650; letter-spacing: .12em; text-transform: uppercase; }
+.coop-story .coop-photo-help { margin-top: 6px; color: #b4b9bc; font-size: 13px; }
+.coop-story .coop-bio { min-width: 0; }
+.coop-story p.coop-eyebrow { margin: 0 0 2px; color: #c3c7c9; font-size: 12px; font-weight: 650; letter-spacing: .15em; text-transform: uppercase; }
+.coop-story .coop-name { padding: 0; margin: 0; color: #fff; font-size: clamp(44px,5vw,62px); font-weight: 750; letter-spacing: -.035em; line-height: 1.2; }
+.coop-story p.coop-program { margin: 8px 0 24px; color: #d4d6d8; font-size: 18px; }
+.coop-story dl.coop-roles { display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: 20px; padding: 0; margin: 0 0 25px; }
+.coop-story .coop-roles > div { padding-left: 14px; border-left: 3px solid var(--coop-red); }
+.coop-story .coop-roles dt { width: auto; margin: 0 0 5px; color: #c3c7c9; font-size: 11px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+.coop-story .coop-roles dd { width: auto; padding: 0; margin: 0; color: #fff; font-size: 17px; line-height: 1.5; }
+.coop-story p.coop-introduction { padding-top: 20px; margin: 0 0 23px; border-top: 1px solid #343638; color: #c9cdd0; font-size: 16px; }
+.coop-story .coop-quote { position: relative; padding-left: 42px; margin: 0; }
+.coop-story .coop-quote::before { content: "“"; position: absolute; top: -12px; left: 0; color: var(--coop-red); font-size: 75px; font-weight: 800; line-height: 1; }
+.coop-story .coop-quote blockquote, .coop-story .coop-quote blockquote p { padding: 0; margin: 0; border: 0; color: #fff; font-size: clamp(25px,2.8vw,34px); font-weight: 700; letter-spacing: -.02em; line-height: 1.3; }
+.coop-story .coop-quote figcaption { margin: 12px 0 0; color: #b0b5b8; font-size: 12px; font-weight: 400; line-height: 1.6; }
+.coop-story .coop-interview { padding: 26px 0 24px; margin: 0 36px; border-top: 1px solid #343638; }
+.coop-story .coop-interview > h2 { padding: 0; margin: 0 0 24px; color: #fff; font-size: clamp(25px,3vw,32px); font-weight: 700; letter-spacing: -.025em; line-height: 1.3; }
+.coop-story .coop-questions { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px 36px; }
+.coop-story .coop-question h3 { padding: 0 0 0 15px; margin: 0 0 10px; border-left: 3px solid var(--coop-red); color: #fff; font-size: 16px; font-weight: 650; line-height: 1.5; }
+.coop-story .coop-question p { padding-left: 18px; margin: 0; color: #d0d3d5; font-size: 15px; line-height: 1.8; }
+.coop-story .coop-edit-note { margin: 22px 0 0; color: #a8adb0; font-size: 12px; }
+@media (max-width: 760px) {
+  body:has(.coop-story) .header-nav { min-height: 78px; gap: 0; padding-block: 12px; line-height: 1.7; }
+  body:has(.coop-story) .logo a { font-size: 20px; }
+  body:has(.coop-story) .menu { margin-top: 8px; }
+  body:has(.coop-story) .menu a { font-size: 13px; }
+  body:has(.coop-story) .main { padding: 26px 18px 0 !important; }
+  .coop-story .coop-profile { grid-template-columns: 1fr; gap: 28px; padding: 24px; }
+  .coop-story figure.coop-photo { width: 100%; max-width: 420px; min-height: 320px; aspect-ratio: 4/5; margin-inline: auto; }
+  .coop-story .coop-photo-placeholder { min-height: 320px; }
+  .coop-story .coop-interview { margin-inline: 24px; }
+  .coop-story .coop-questions { grid-template-columns: 1fr; gap: 26px; }
+}
+@media (max-width: 420px) {
+  .coop-story .coop-profile { padding: 20px; }
+  .coop-story dl.coop-roles { grid-template-columns: 1fr; gap: 16px; }
+  .coop-story .coop-interview { margin-inline: 20px; }
+  .coop-story figure.coop-photo, .coop-story .coop-photo-placeholder { min-height: 280px; }
+}
+` -}}
+{{- $css = replace $css "__COOP_BACKGROUND__" ("img/background.jpg" | absURL) -}}
+{{- $stylesheet := resources.FromString "css/coop-spotlight.css" $css | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $stylesheet.Permalink }}" integrity="{{ $stylesheet.Data.Integrity }}" crossorigin="anonymous">
+
+{{- $profile := .Page.Params.coop -}}
+{{- $id := printf "coop-%s" (.Page.File.ContentBaseName | anchorize) -}}
+<article class="coop-story" aria-label="{{ .Page.Title }}">
+  <header class="coop-heading">
+    <p class="coop-label"><a href="{{ .Page.Permalink }}">Summer co-op spotlight</a></p>
+    <ul class="coop-topics" aria-label="Article topics">
+      {{ range .Page.GetTerms "tags" }}
+      <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+      {{ end }}
+    </ul>
+  </header>
+
+  <div class="coop-panel">
+    <div class="coop-profile">
+      <figure class="coop-photo">
+        {{- with .Page.Params.cover.image -}}
+          {{- $photo := $.Page.Resources.GetMatch . -}}
+          {{- if not $photo -}}
+            {{- errorf "Co-op photo %q is missing from %s. Upload the photo beside index.md or leave cover.image empty." . $.Page.File.Path -}}
+          {{- else -}}
+            <img src="{{ $photo.Permalink }}" alt="{{ $.Page.Params.cover.alt }}" decoding="async" loading="lazy">
+          {{- end -}}
+        {{- else }}
+          <div class="coop-photo-placeholder" role="img" aria-label="Photo placeholder for {{ $profile.name }}">
+            <svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="5" y="7" width="54" height="50" rx="3"/>
+              <circle cx="44" cy="22" r="5"/>
+              <path d="m6 48 16-19 14 16 7-9 16 20"/>
+            </svg>
+            <span class="coop-photo-label">{{ $profile.name }}'s photo</span>
+            <span class="coop-photo-help">Add portrait or workshop photo</span>
+          </div>
+        {{- end }}
+      </figure>
+
+      <div class="coop-bio">
+        <p class="coop-eyebrow">Meet {{ $profile.name }}</p>
+        <h2 class="coop-name">{{ $profile.name }}</h2>
+        <p class="coop-program">{{ $profile.program }}</p>
+        <dl class="coop-roles">
+          <div><dt>Formula role</dt><dd>{{ $profile.formulaRole }}</dd></div>
+          <div><dt>Co-op role</dt><dd>{{ $profile.coopRole }}</dd></div>
+        </dl>
+        <p class="coop-introduction">{{ $profile.introduction }}</p>
+        {{ with $profile.quote }}
+        <figure class="coop-quote">
+          <blockquote><p>{{ . }}</p></blockquote>
+          <figcaption>{{ $profile.quoteContext }}</figcaption>
+        </figure>
+        {{ end }}
+      </div>
+    </div>
+
+    <section class="coop-interview" aria-labelledby="{{ $id }}-interview">
+      <h2 id="{{ $id }}-interview">Inside {{ $profile.name }}'s experience</h2>
+      <div class="coop-questions">
+        {{ range $profile.questions }}
+        <section class="coop-question">
+          <h3>{{ .question }}</h3>
+          <p>{{ .answer }}</p>
+        </section>
+        {{ end }}
+      </div>
+      <p class="coop-edit-note">Interview excerpts edited for length.</p>
+    </section>
+  </div>
+</article>
