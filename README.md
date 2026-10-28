@@ -5,6 +5,7 @@ This README contains all of the information needed to create a blog post on the 
 **To see your blog online after committing changes, use this url and change x to be (name-of-post), no capital letters**: https://formula-uottawa.github.io/uOpenBlog/posts/x/
 
 Shortcuts:
+- [Co-op spotlight articles and member profiles](docs/co-op-spotlights.md)
 - [Markdown Syntax](https://github.com/Formula-uOttawa/uOpenBlog/blob/main/README.md#markdown-syntax)
 - [Image Keyword Table](https://github.com/Formula-uOttawa/uOpenBlog/blob/main/README.md#current-keyword-table)
 - [Embedding Videos](https://github.com/Formula-uOttawa/uOpenBlog/blob/main/README.md#embedding-videos)
@@ -145,6 +146,20 @@ For the existing GitHub-browser publishing process, keep uploaded MP4 files unde
 
 GitHub's Markdown preview does not render Hugo shortcodes. After committing, view the published post at `https://formula-uottawa.github.io/uOpenBlog/posts/name-of-post/`.
 
+
+## Co-op spotlight articles
+
+Keep several member interviews in one normal Markdown post, with the existing
+`authors` and `tags` metadata. The homepage shows its summary card; readers click
+through to the interviews. No homepage template changes are needed for another collection.
+
+See [the co-op contribution guide](docs/co-op-spotlights.md) for the copyable member
+block, profile setup, photo sizes, author credit, draft checks and local preview steps.
+The `coop` archetype provides a starter for a new collection:
+
+```powershell
+hugo new content posts/summer-coop-2027/index.md --kind coop
+```
 
 # Software Team Section
 

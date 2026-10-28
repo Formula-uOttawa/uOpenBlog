@@ -1,0 +1,73 @@
+{{- /* One member inside a Markdown article. See docs/co-op-spotlights.md. */ -}}
+{{- $slug := .Get "member" -}}
+{{- $member := site.GetPage (printf "/authors/%s" $slug) -}}
+{{- if not $member -}}
+  {{- errorf "coop: create content/authors/%s/_index.md before referencing this member (%s)." $slug .Position -}}
+{{- else -}}
+  {{- $published := not .Page.Draft -}}
+  {{- if and $published $member.Draft -}}
+    {{- errorf "coop: member profile %q is still a draft. Confirm their full name before publishing (%s)." $slug .Position -}}
+  {{- end -}}
+  {{- if and $published (not .Page.Params.authors) -}}
+    {{- errorf "coop: add the article writer's full name to authors in the post metadata (%s)." .Position -}}
+  {{- end -}}
+  {{- $imageName := .Get "image" -}}
+  {{- $image := false -}}
+  {{- if $imageName -}}
+    {{- $image = .Page.Resources.GetMatch $imageName -}}
+    {{- if not $image -}}
+      {{- errorf "coop: photo %q is missing. Put it beside the article's index.md (%s)." $imageName .Position -}}
+    {{- end -}}
+  {{- else if $published -}}
+    {{- errorf "coop: add a real photo for %s before setting draft: false (%s)." $member.Title .Position -}}
+  {{- end -}}
+  {{- $id := printf "member-%s" ($slug | anchorize) -}}
+  <section class="coop-story" id="{{ $id }}" aria-labelledby="{{ $id }}-name">
+    <div class="coop-panel">
+      <div class="coop-profile">
+        <figure class="coop-photo">
+          {{- with $image }}
+            <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"
+                 alt="{{ $.Get "image-alt" | default (printf "Portrait of %s" $member.Title) }}"
+                 loading="lazy" decoding="async">
+          {{- else }}
+            {{/* Missing photos are allowed in draft previews only. */}}
+            <div class="coop-photo-placeholder" role="img" aria-label="Photo pending for {{ $member.Title }}">
+              <svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="5" y="7" width="54" height="50" rx="3"/>
+                <circle cx="44" cy="22" r="5"/>
+                <path d="m6 48 16-19 14 16 7-9 16 20"/>
+              </svg>
+              <span class="coop-photo-label">Photo pending</span>
+              <span class="coop-photo-help">Add {{ $member.Title }}'s approved photo before publishing</span>
+            </div>
+          {{- end }}
+        </figure>
+        <div class="coop-bio">
+          <p class="coop-eyebrow">Meet</p>
+          <h2 class="coop-name" id="{{ $id }}-name"><a href="{{ $member.RelPermalink }}">{{ $member.Title }}</a></h2>
+          <p class="coop-program">{{ .Get "program" }}</p>
+          <a class="coop-member-link" href="{{ $member.RelPermalink }}">View member profile <span aria-hidden="true">&rarr;</span></a>
+          <dl class="coop-roles">
+            <div><dt>Formula role</dt><dd>{{ .Get "formula-role" }}</dd></div>
+            <div><dt>Co-op role</dt><dd>{{ .Get "coop-role" }}</dd></div>
+          </dl>
+          {{ with .Get "intro" }}
+            <div class="coop-introduction">{{ $.Page.RenderString (dict "display" "block") . }}</div>
+          {{ end }}
+          {{ with .Get "quote" }}
+            <figure class="coop-quote">
+              <blockquote><p>{{ . }}</p></blockquote>
+              <figcaption>{{ $.Get "quote-context" }}</figcaption>
+            </figure>
+          {{ end }}
+        </div>
+      </div>
+      <section class="coop-interview" aria-labelledby="{{ $id }}-interview">
+        <h3 class="coop-interview-title" id="{{ $id }}-interview">Inside {{ $member.Title }}'s experience</h3>
+        <div class="coop-questions">{{ .Page.RenderString (dict "display" "block") .Inner }}</div>
+        <p class="coop-edit-note">Interview excerpts edited for length.</p>
+      </section>
+    </div>
+  </section>
+{{- end -}}
