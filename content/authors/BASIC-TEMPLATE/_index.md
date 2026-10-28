@@ -1,5 +1,6 @@
 ---
 title: "(Name)"
+draft: true
 ---
 
 **(Role)**
