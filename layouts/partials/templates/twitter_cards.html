@@ -3,8 +3,8 @@
 {{- if (ne $.Params.cover.relative true) }}
 <meta name="twitter:image" content="{{ .Params.cover.image | absURL }}">
 {{- else }}
-<meta name="twitter:image" content="{{ (path.Join .Permalink .Params.cover.image ) | absURL }}">
-{{- end}}
+<meta name="twitter:image" content="{{ printf "%s%s" .Permalink .Params.cover.image }}">
+{{- end }}
 {{- else }}
 {{- $images := partial "templates/_funcs/get-page-images" . }}
 {{- with index $images 0 }}
