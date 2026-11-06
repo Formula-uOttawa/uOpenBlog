@@ -21,7 +21,7 @@ canonifyURLs = true
 [[menu.main]]
     identifier = "tags"
     name = "Browse Tags"
-    url = "/tags/"
+    url = "tags/"
     weight = 20
 
 # Theme-specific settings to show taxonomies on post pages
