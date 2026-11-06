@@ -6,7 +6,7 @@ draft: false
 tags: ["suspension","maintenance","technical"]
 authors: ["John Darling"]
 cover:
-    image: "thumbnail.jpg" # Path to your image
+    image: "thumbnail.webp" # Path to your image
     alt: "Video Cover"
     caption: ""
     relative: true # Set to true if image is in the same folder as your post
