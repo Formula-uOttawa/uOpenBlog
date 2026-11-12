@@ -45,7 +45,7 @@ Set a completed profile to `draft: false` before publishing the article.
 ## Add another member to the same article
 
 1. Create or update their member profile as described above.
-2. Add their approved photo beside the article's `index.md`.
+2. If they have an approved photo, add it beside the article's `index.md`.
 3. Copy one whole `coop` block in that same article, including its closing line.
 4. Change the member slug, program, roles, introduction, quote and photo settings.
 5. Replace the questions and answers inside the block with the member's own content.
@@ -106,12 +106,12 @@ to the wrong collection. Ordinary non-interview blog posts need no `coop` shortc
 - Use JPG or WebP, preferably below 500 KB. Keep the face centred with headroom;
   the card crops the photo to fit its available space.
 - `image-alt` should describe the actual photo, not just say "image".
-- `image=""` displays a pending-photo box only in a draft preview.
+- Leave out `image` and `image-alt` for a text-only spotlight. Draft previews show
+  a pending-photo box, and published posts omit it.
 
-Published interviews must have real image files. A missing/misspelled image, a
-missing member profile, an unfinished draft profile, or missing article author
-credit stops the build with an explanation. This prevents placeholders from
-accidentally reaching the published blog.
+A reference to an image file that doesn't exist, a missing member profile, an
+unfinished draft profile, or missing article author credit stops the build with
+an explanation.
 
 ## Preview and publishing checklist
 
@@ -127,7 +127,8 @@ Open `http://localhost:1313/uOpenBlog/`, click the article card, and check:
 - The homepage contains one summary card for the whole collection, not full interviews.
 - Homepage tag buttons and Browse Tags work; existing categories still appear.
 - The article has the writer's linked byline, the correct tags and all interviews.
-- Each person has a confirmed full name, working profile link and an approved photo.
+- Each person has a confirmed full name and a working profile link. Check that any
+  photos are approved and load correctly.
 - Quotes match the interviews and desktop/mobile layouts remain readable.
 
 Set the completed member profiles and article to `draft: false`, then run:
@@ -137,14 +138,16 @@ hugo --minify
 ```
 
 The deployment uses Hugo 0.146.0. A regular build does not include draft posts.
-Do not merge a post that still needs names, permissions or photos.
+Confirm the featured members' names and permission to publish any photos before merging.
 
 ### Current article's content
 
-The collection features Jacob Thomas, Benjamin Marceau and Maire Levin, with their
-real photos included beside the article as `jacob.jpg`, `benji.jpg` and `maire.jpg`.
-All three photos are 1200 x 1500 pixels (4:5 portrait). Jiyun Chen is credited as
-the writer/editor. The article and all featured profiles have `draft: false`.
+The collection features Jacob Thomas, Benjamin Marceau, Maire Levin, Samuel Li and
+Lennox Yeomans.
+Their photos are included beside the article as `jacob.jpg`, `benji.jpg`,
+`maire.jpg`, `samuel.jpg` and `lennox.jpg`. All five photos are 1200 x 1500
+pixels (4:5 portrait). Jiyun Chen is credited as the writer/editor.
+The article and all featured profiles have `draft: false`.
 
 Jacob's profile keeps the existing `jacob` folder slug; its title displays the
 confirmed full name, Jacob Thomas, without breaking existing profile links.

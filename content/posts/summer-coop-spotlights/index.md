@@ -1,7 +1,7 @@
 ---
 title: "Summer co-op spotlights"
-description: "Three Formula uOttawa members share their hands-on learning and mechanical engineering co-op experiences at Nokia, Remstar Racing and BRP."
-summary: "Jacob Thomas, Benjamin Marceau and Maire Levin discuss design projects, teamwork and the Formula experience they brought into their co-ops."
+description: "Five Formula uOttawa members share their engineering co-op and internship experiences at Nokia, Remstar Racing, BRP, Thales Canada and 13 Autosport."
+summary: "Jacob Thomas, Benjamin Marceau, Maire Levin, Samuel Li and Lennox Yeomans share what they learned through Formula and brought to their engineering placements."
 date: 2026-10-28T00:00:00-04:00
 draft: false
 authors: ["Jiyun Chen"]
@@ -14,14 +14,16 @@ aliases:
 
 Formula uOttawa gives members opportunities to work on real engineering projects,
 learn from one another and take a design from an idea to a working component.
-In these interviews, three Mechanical Engineering students describe their co-op
-work and the team experience they brought with them.
+In these interviews, five engineering students describe their co-op and
+internship work and how their Formula experience helped them on the job.
 
 ## Meet the members
 
 - [Jacob Thomas](#member-jacob) - Aero Lead; Nokia
 - [Benjamin Marceau (Benji)](#member-benjamin-marceau) - Chassis Lead; Remstar Racing
 - [Maire Levin](#member-maire-levin) - Team Captain; BRP's Sea-Doo R&D team
+- [Samuel Li](#member-samuel-li) - Electrical Lead; Thales Canada Defence and Security
+- [Lennox Yeomans](#member-lennox-yeomans) - Aerodynamics & Chassis Designer; 13 Autosport
 
 {{< coop
   member="jacob"
@@ -138,5 +140,109 @@ work and the team experience they brought with them.
 > until I saw it. I knew nothing about race cars, and now I am Team Captain.
 > I still don't know everything, but we all love to learn and share
 > what we know.
+
+{{< /coop >}}
+
+{{< coop
+  member="samuel-li"
+  program="Third-year Electrical and Computer Engineering student"
+  formula-role="Electrical Lead"
+  coop-role="Electrical Engineer Intern at Thales Canada Defence and Security"
+  image="samuel.jpg"
+  image-alt="Samuel Li seated in Formula uOttawa's race car"
+  intro="Samuel designs wiring harnesses for Formula uOttawa and works on projects supporting the Royal Canadian Air Force at Thales."
+  quote="FSAE is a big investment of your time and effort, but it's also an investment in yourself."
+  quote-context="Samuel Li, on joining the team"
+>}}
+
+> **What do you do at your co-op?**
+>
+> I work on maintenance, upgrades, research and business development
+> projects that support the Royal Canadian Air Force.
+
+> **What have you worked on and learned through FSAE?**
+>
+> I worked on the GGR25 and GGR26 wiring harnesses, and I'm currently
+> designing the GGR27 harness. I've been involved in pretty much every
+> aspect of the team's electrical work, including PCB design, circuit
+> design and wiring harness development.
+>
+> Although I didn't learn computer architecture directly through FSAE,
+> the experience helped me understand the practical applications and
+> value of what we learn in that course.
+
+> **Did FSAE come up during your co-op interviews?**
+>
+> Yes, FSAE was pretty much all the interviewers wanted to talk about.
+> I had seven interviews, including ones with Tesla, Thales and General
+> Dynamics Land Systems.
+>
+> The interviewers were much more interested in my FSAE experience than
+> in which courses I had taken. FSAE showed that I understood engineering
+> concepts and could apply them to real-world projects.
+
+> **What's one of your favourite memories with the team?**
+>
+> In 2025, our team built the wiring harness for the entire car in a
+> single night. That's definitely one of my favourite memories.
+
+> **What would you say to someone who thinks they don't know enough to join?**
+>
+> You could know even less than I did when I first joined, and that's
+> completely fine. Everyone has to start somewhere. FSAE is a big
+> investment of your time and effort, but it's also an investment in
+> yourself. You don't need to know everything before joining. You just
+> need to be willing to learn.
+
+{{< /coop >}}
+
+{{< coop
+  member="lennox-yeomans"
+  program="Third-year Mechanical Engineering student"
+  formula-role="Aerodynamics & Chassis Designer"
+  coop-role="Systems Engineering Intern at 13 Autosport"
+  image="lennox.jpg"
+  image-alt="Lennox Yeomans seated in Formula uOttawa's race car"
+  intro="At 13 Autosport, Lennox supported the systems and performance engineering team working on the Chevrolet Corvette Z06 GT3.R in IMSA. Experience with Formula uOttawa helped Lennox understand how the systems on more complex race cars work."
+  quote="If you’re interested and willing to learn, you have enough to get started."
+  quote-context="Lennox Yeomans, on joining the team"
+>}}
+
+> **What did you do during your internship?**
+>
+> I supported the systems and performance engineering team working on the
+> Chevrolet Corvette Z06 GT3.R in IMSA. My work included analyzing vehicle
+> data, testing springs, dampers and bump rubbers, and developing Excel
+> tools to process test results. I also worked on design projects involving
+> 3D printing and supported the team during track tests and race events.
+
+> **What have you worked on and learned through FSAE?**
+>
+> FSAE has given me a foundation for understanding more complex race cars.
+> Relating their systems to the components on our own car helps me understand
+> how those systems work, why they’re designed the way they are, and how they
+> can fail. FSAE has also taught me to learn from people with far more
+> experience and make the most of every opportunity to work alongside them.
+
+> **Did FSAE come up during your internship interview?**
+>
+> Yes, I was asked about Formula during my interview. Many people in motorsports
+> get their start on an FSAE team before moving into the industry. It was great
+> to see how strong that connection is and to realize that being part of FSAE
+> means belonging to a much larger motorsports community.
+
+> **What’s one of your favourite memories with the team?**
+>
+> My favourite memory was seeing the sheer joy and excitement at competition
+> as teammates watched their ideas become reality. It was really cool to see
+> everyone’s hard work come together in a competitive car.
+
+> **What would you say to someone who thinks they don’t know enough to join?**
+>
+> You don’t need to know everything before joining. I’ve learned so much by
+> getting involved, asking questions, and working alongside other team members.
+> There’s a big difference between learning something in class and applying it
+> in the real world. If you’re interested and willing to learn, you have enough
+> to get started.
 
 {{< /coop >}}

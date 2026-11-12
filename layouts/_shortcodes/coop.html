@@ -18,31 +18,29 @@
     {{- if not $image -}}
       {{- errorf "coop: photo %q is missing. Put it beside the article's index.md (%s)." $imageName .Position -}}
     {{- end -}}
-  {{- else if $published -}}
-    {{- errorf "coop: add a real photo for %s before setting draft: false (%s)." $member.Title .Position -}}
   {{- end -}}
   {{- $id := printf "member-%s" ($slug | anchorize) -}}
   <section class="coop-story" id="{{ $id }}" aria-labelledby="{{ $id }}-name">
     <div class="coop-panel">
       <div class="coop-profile">
-        <figure class="coop-photo">
-          {{- with $image }}
-            <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"
-                 alt="{{ $.Get "image-alt" | default (printf "Portrait of %s" $member.Title) }}"
-                 loading="lazy" decoding="async">
-          {{- else }}
-            {{/* Missing photos are allowed in draft previews only. */}}
-            <div class="coop-photo-placeholder" role="img" aria-label="Photo pending for {{ $member.Title }}">
-              <svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="5" y="7" width="54" height="50" rx="3"/>
-                <circle cx="44" cy="22" r="5"/>
-                <path d="m6 48 16-19 14 16 7-9 16 20"/>
-              </svg>
-              <span class="coop-photo-label">Photo pending</span>
-              <span class="coop-photo-help">Add {{ $member.Title }}'s approved photo before publishing</span>
-            </div>
-          {{- end }}
-        </figure>
+        {{- if or $image .Page.Draft }}
+          <figure class="coop-photo">
+            {{- with $image }}
+              <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"
+                   alt="{{ $.Get "image-alt" | default (printf "Portrait of %s" $member.Title) }}"
+                   loading="lazy" decoding="async">
+            {{- else }}
+              <div class="coop-photo-placeholder" role="img" aria-label="Photo pending for {{ $member.Title }}">
+                <svg aria-hidden="true" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="5" y="7" width="54" height="50" rx="3"/>
+                  <circle cx="44" cy="22" r="5"/>
+                  <path d="m6 48 16-19 14 16 7-9 16 20"/>
+                </svg>
+                <span class="coop-photo-label">Photo pending</span>
+              </div>
+            {{- end }}
+          </figure>
+        {{- end }}
         <div class="coop-bio">
           <p class="coop-eyebrow">Meet</p>
           <h2 class="coop-name" id="{{ $id }}-name"><a href="{{ $member.RelPermalink }}">{{ $member.Title }}</a></h2>

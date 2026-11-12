@@ -92,14 +92,12 @@ body:has(.post-single .coop-story) .main {
   text-transform: uppercase;
 }
 
-.coop-story .coop-photo-help {
-  margin-top: 6px;
-  color: #b4b9bc;
-  font-size: 13px;
-}
-
 .coop-story .coop-bio {
   min-width: 0;
+}
+
+.coop-story .coop-bio:only-child {
+  grid-column: 1 / -1;
 }
 
 .coop-story p.coop-eyebrow {
