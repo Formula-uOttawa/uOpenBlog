@@ -6,6 +6,12 @@ date: 2026-10-28T00:00:00-04:00
 draft: false
 authors: ["Jiyun Chen"]
 tags: ["careers", "member stories", "mechanical"]
+cover:
+  image: "summer-coop-cover.webp"
+  alt: "Formula uOttawa — Summer Co-op Spotlights"
+  relative: true
+  belowSummary: true
+  hiddenInSingle: true
 aliases:
   - "/posts/summer-coop-jacob/"
   - "/posts/summer-coop-benji/"

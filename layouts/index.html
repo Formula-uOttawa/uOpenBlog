@@ -147,7 +147,11 @@
 
 <article class="{{ $class }}">
   {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
-  {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
+  {{- $cover := partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
+  {{- $coverBelowSummary := .Param "cover.belowSummary" }}
+  {{- if not $coverBelowSummary }}
+    {{- $cover }}
+  {{- end }}
   <header class="entry-header">
     <h2 class="entry-hint-parent">
       {{- .Title }}
@@ -165,6 +169,9 @@
   <div class="entry-content">
     <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
   </div>
+  {{- end }}
+  {{- if $coverBelowSummary }}
+    {{- $cover }}
   {{- end }}
   {{- if not (.Param "hideMeta") }}
   <footer class="entry-footer">

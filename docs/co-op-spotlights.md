@@ -23,24 +23,31 @@ Do not list the interviewees as article authors unless they also helped write it
 
 Every featured person also needs a profile. Copy
 `content/authors/BASIC-TEMPLATE/_index.md` into a new, lowercase, hyphenated folder,
-then enter their full name, role and a short factual biography. For example:
+then enter their full name, role and a short factual biography. Follow the layout
+of `content/authors/john-darling/_index.md` on `main`. If the member's photo is
+already in the spotlight article, reference it from the profile rather than
+uploading a second copy. For example:
 
 ```markdown
 ---
 title: "Alex Example"
-draft: true
 ---
 
 **Mechanical team member**
 
+<img src="../../posts/summer-coop-spotlights/alex.jpg" alt="Alex Example working on the team's car" style="float: left; margin-right: 20px; width: 45%; max-width: 250px; height: auto;">
+
 Add a brief, approved biography here.
+
+<br style="clear: both;" />
 ```
 
 The profile folder, for example `alex-example`, is the `member` value used below.
 The interview heading automatically uses the profile's full `title` and links to
 that profile. Keep the folder slug stable when correcting someone's display name.
 Only add LinkedIn, GitHub or other personal links supplied or approved by the member.
-Set a completed profile to `draft: false` before publishing the article.
+Omit `draft` for a completed profile. Leave out the image and clearing break when
+the member doesn't have a photo.
 
 ## Add another member to the same article
 
@@ -131,7 +138,7 @@ Open `http://localhost:1313/uOpenBlog/`, click the article card, and check:
   photos are approved and load correctly.
 - Quotes match the interviews and desktop/mobile layouts remain readable.
 
-Set the completed member profiles and article to `draft: false`, then run:
+Set the article to `draft: false` and make sure each profile is published, then run:
 
 ```powershell
 hugo --minify
@@ -147,7 +154,7 @@ Lennox Yeomans.
 Their photos are included beside the article as `jacob.jpg`, `benji.jpg`,
 `maire.jpg`, `samuel.jpg` and `lennox.jpg`. All five photos are 1200 x 1500
 pixels (4:5 portrait). Jiyun Chen is credited as the writer/editor.
-The article and all featured profiles have `draft: false`.
+The article and all featured profiles are included in a normal build.
 
 Jacob's profile keeps the existing `jacob` folder slug; its title displays the
 confirmed full name, Jacob Thomas, without breaking existing profile links.
