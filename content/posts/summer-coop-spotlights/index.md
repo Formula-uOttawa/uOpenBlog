@@ -1,11 +1,11 @@
 ---
-title: "Summer co-op spotlights"
+title: "Summer Co-Op Spotlights"
 description: "Five Formula uOttawa members share their engineering co-op and internship experiences at Nokia, Remstar Racing, BRP, Thales Canada and 13 Autosport."
 summary: "Jacob Thomas, Benjamin Marceau, Maire Levin, Samuel Li and Lennox Yeomans share what they learned through Formula and brought to their engineering placements."
-date: 2026-10-28T00:00:00-04:00
+date: 2026-11-16T00:00:00-04:00
 draft: false
 authors: ["Jiyun Chen"]
-tags: ["careers", "member stories", "mechanical"]
+tags: ["careers", "member stories"]
 cover:
   image: "summer-coop-cover.webp"
   alt: "Formula uOttawa — Summer Co-op Spotlights"
@@ -29,7 +29,7 @@ internship work and how their Formula experience helped them on the job.
 - [Benjamin Marceau (Benji)](#member-benjamin-marceau) - Chassis Lead; Remstar Racing
 - [Maire Levin](#member-maire-levin) - Team Captain; BRP's Sea-Doo R&D team
 - [Samuel Li](#member-samuel-li) - Electrical Lead; Thales Canada Defence and Security
-- [Lennox Yeomans](#member-lennox-yeomans) - Aerodynamics & Chassis Designer; 13 Autosport
+- [Lennox Yeomans](#member-lennox-yeomans) - Aerodynamics & Chassis Associate; 13 Autosport
 
 {{< coop
   member="jacob"
@@ -205,7 +205,7 @@ internship work and how their Formula experience helped them on the job.
 {{< coop
   member="lennox-yeomans"
   program="Third-year Mechanical Engineering student"
-  formula-role="Aerodynamics & Chassis Designer"
+  formula-role="Aerodynamics & Chassis Associate"
   coop-role="Systems Engineering Intern at 13 Autosport"
   image="lennox.jpg"
   image-alt="Lennox Yeomans seated in Formula uOttawa's race car"
