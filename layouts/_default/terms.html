@@ -9,6 +9,28 @@
     {{- end }}
 </header>
 
-{{ partial "filtered_tags.html" . }}
+{{ if eq .Data.Singular "tag" }}
+  {{ partial "filtered_tags.html" . }}
+{{ else if eq .Data.Singular "author" }}
+  {{/* Include member profiles even when the member has not authored a post. */}}
+  {{ $profiles := where site.Pages "Section" "authors" }}
+  {{ $profiles = where $profiles "Kind" "term" }}
+  <ul class="terms-tags">
+    {{ range $profiles.ByTitle }}
+      {{ $listed := where .Pages "Params.unlisted" "ne" true }}
+      {{ if and (not .Draft) (or .File (gt (len $listed) 0)) }}
+        <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+      {{ end }}
+    {{ end }}
+  </ul>
+{{ else }}
+  <ul class="terms-tags">
+    {{ range .Data.Terms.Alphabetical }}
+      {{ if not .Page.Draft }}
+        <li><a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a></li>
+      {{ end }}
+    {{ end }}
+  </ul>
+{{ end }}
 
 {{ end }}
