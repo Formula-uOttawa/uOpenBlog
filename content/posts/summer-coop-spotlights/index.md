@@ -4,7 +4,7 @@ description: "Five Formula uOttawa members share their engineering co-op and int
 summary: "Jacob Thomas, Benjamin Marceau, Marie Levin, Samuel Li and Lennox Yeomans share what they learned through Formula and brought to their engineering placements."
 date: 2026-11-16T00:00:00-04:00
 draft: false
-authors: ["Jiyun Chen"]
+authors: ["Jiyun Chen", "Ayham AlAkhras"]
 tags: ["careers", "member stories"]
 cover:
   image: "summer-coop-cover.webp"
@@ -25,16 +25,16 @@ internship work and how their Formula experience helped them on the job.
 
 ## Meet the members
 
-- [Jacob Thomas](#member-jacob) - Aero Lead; Nokia
-- [Benjamin Marceau (Benji)](#member-benjamin-marceau) - Chassis Lead; Remstar Racing
+- [Jacob Thomas](#member-jacob-thomas) - Aerodynamics Lead; Nokia
+- [Benjamin Marceau](#member-benjamin-marceau) - Chassis Lead; Remstar Racing
 - [Marie Levin](#member-marie-levin) - Team Captain; BRP's Sea-Doo R&D team
 - [Samuel Li](#member-samuel-li) - Electrical Lead; Thales Canada Defence and Security
 - [Lennox Yeomans](#member-lennox-yeomans) - Aerodynamics & Chassis Associate; 13 Autosport
 
 {{< coop
-  member="jacob"
+  member="jacob-thomas"
   program="Third-year Mechanical Engineering student"
-  formula-role="Aero Lead"
+  formula-role="Aerodynamics Lead"
   coop-role="Mechanical Engineering Intern at Nokia"
   image="jacob.jpg"
   image-alt="Jacob Thomas seated in Formula uOttawa's race car"
@@ -76,7 +76,7 @@ internship work and how their Formula experience helped them on the job.
   coop-role="Mechanical Engineering Intern at Remstar Racing"
   image="benji.jpg"
   image-alt="Benjamin Marceau seated in Formula uOttawa's race car"
-  intro="At Remstar Racing, Benji helps drivers understand track data and builds tools for faster analysis. His Formula experience includes working on race cars, managing tight deadlines and learning to improve through team feedback."
+  intro="At Remstar Racing, Benjamin helps drivers understand track data and builds tools for faster analysis. His Formula experience includes working on race cars, managing tight deadlines and learning to improve through team feedback."
   quote="I've also learned how to accept criticism and use feedback to improve."
   quote-context="Benjamin Marceau, on what working with the team has taught him"
 >}}
