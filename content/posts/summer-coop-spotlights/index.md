@@ -1,7 +1,7 @@
 ---
 title: "Summer Co-Op Spotlights"
 description: "Five Formula uOttawa members share their engineering co-op and internship experiences at Nokia, Remstar Racing, BRP, Thales Canada and 13 Autosport."
-summary: "Jacob Thomas, Benjamin Marceau, Maire Levin, Samuel Li and Lennox Yeomans share what they learned through Formula and brought to their engineering placements."
+summary: "Jacob Thomas, Benjamin Marceau, Marie Levin, Samuel Li and Lennox Yeomans share what they learned through Formula and brought to their engineering placements."
 date: 2026-11-16T00:00:00-04:00
 draft: false
 authors: ["Jiyun Chen"]
@@ -15,7 +15,7 @@ cover:
 aliases:
   - "/posts/summer-coop-jacob/"
   - "/posts/summer-coop-benji/"
-  - "/posts/summer-coop-maire/"
+  - "/posts/summer-coop-marie/"
 ---
 
 Formula uOttawa gives members opportunities to work on real engineering projects,
@@ -27,7 +27,7 @@ internship work and how their Formula experience helped them on the job.
 
 - [Jacob Thomas](#member-jacob) - Aero Lead; Nokia
 - [Benjamin Marceau (Benji)](#member-benjamin-marceau) - Chassis Lead; Remstar Racing
-- [Maire Levin](#member-maire-levin) - Team Captain; BRP's Sea-Doo R&D team
+- [Marie Levin](#member-marie-levin) - Team Captain; BRP's Sea-Doo R&D team
 - [Samuel Li](#member-samuel-li) - Electrical Lead; Thales Canada Defence and Security
 - [Lennox Yeomans](#member-lennox-yeomans) - Aerodynamics & Chassis Associate; 13 Autosport
 
@@ -110,15 +110,15 @@ internship work and how their Formula experience helped them on the job.
 {{< /coop >}}
 
 {{< coop
-  member="maire-levin"
+  member="marie-levin"
   program="Fifth-year Mechanical Engineering student"
   formula-role="Team Captain"
   coop-role="Mechanical Engineering Intern at BRP, Sea-Doo R&D team"
-  image="maire.jpg"
-  image-alt="Maire Levin seated in Formula uOttawa's race car"
-  intro="Maire's Formula experience spans complete design cycles, from early research to manufacturing and testing. At BRP's Sea-Doo R&D team, Maire worked on iterative FEA and the first prototypes of a new fishing boat assembly."
+  image="marie.jpg"
+  image-alt="Marie Levin seated in Formula uOttawa's race car"
+  intro="Marie's Formula experience spans complete design cycles, from early research to manufacturing and testing. At BRP's Sea-Doo R&D team, Marie worked on iterative FEA and the first prototypes of a new fishing boat assembly."
   quote="The most valuable thing I have learned is participating in the full design process."
-  quote-context="Maire Levin, on taking race-car components from an idea to testing"
+  quote-context="Marie Levin, on taking race-car components from an idea to testing"
 >}}
 
 > **What did you work on with BRP's Sea-Doo R&D team?**

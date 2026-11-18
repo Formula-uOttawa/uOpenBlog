@@ -14,7 +14,7 @@ Use the existing `authors` taxonomy for the people who wrote or edited the artic
 
 ```yaml
 authors: ["Jiyun Chen"]
-tags: ["careers", "member stories", "mechanical"]
+tags: ["careers", "member stories"]
 ```
 
 The plural `authors` field produces linked author credit on the homepage card and
@@ -149,10 +149,10 @@ Confirm the featured members' names and permission to publish any photos before 
 
 ### Current article's content
 
-The collection features Jacob Thomas, Benjamin Marceau, Maire Levin, Samuel Li and
+The collection features Jacob Thomas, Benjamin Marceau, Marie Levin, Samuel Li and
 Lennox Yeomans.
 Their photos are included beside the article as `jacob.jpg`, `benji.jpg`,
-`maire.jpg`, `samuel.jpg` and `lennox.jpg`. All five photos are 1200 x 1500
+`marie.jpg`, `samuel.jpg` and `lennox.jpg`. All five photos are 1200 x 1500
 pixels (4:5 portrait). Jiyun Chen is credited as the writer/editor.
 The article and all featured profiles are included in a normal build.
 
